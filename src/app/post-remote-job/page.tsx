@@ -2,7 +2,23 @@ import Navbar from '@/components/navbar'
 
 export default function Home() {
   return (
-    <main>
+    <main className="relative">
+      <div className="fixed bottom-0 left-0 w-full z-50 pt-4 bg-white">
+        <div className="border border-zinc-200 rounded-t-md mx-auto max-w-xl h-20 p-4 bg-white flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-sm">Total</span>
+            <div className="flex items-center gap-2">
+              <span className="opacity-50 line-through font-semibold">
+                R$ 200
+              </span>
+              <strong>R$ 180</strong>
+            </div>
+          </div>
+          <button className="bg-[#192BC2] px-4 py-2 text-white text-sm font-semibold rounded-md">
+            Começar a contratar!
+          </button>
+        </div>
+      </div>
       <Navbar theme="dark" />
 
       <div className="mt-16">
@@ -23,7 +39,7 @@ export default function Home() {
         <div className="w-full border-t border-dashed my-4"></div>
 
         <div className="flex flex-col mb-4">
-          <span className="bg-white -mb-2 ml-2 z-50 w-fit px-2">
+          <span className="bg-white -mb-2 ml-2 z-30 w-fit px-2">
             Sobre a vaga
           </span>
           <div className="px-4 py-8 border border-zinc-200 rounded-md space-y-8">
@@ -66,6 +82,36 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-1">
+              <span className="text-sm">DESCRIÇÃO *</span>
+              <input
+                type="text"
+                className="w-full focus:outline-none text-sm font-semibold p-2 bg-zinc-100 rounded-full"
+                placeholder="Tipo do trabalho"
+              />
+              <span className="text-xs opacity-50"></span>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <span className="text-sm">BENEFÍCIOS *</span>
+              <input
+                type="text"
+                className="w-full focus:outline-none text-sm font-semibold p-2 bg-zinc-100 rounded-full"
+                placeholder="Tipo do trabalho"
+              />
+              <span className="text-xs opacity-50"></span>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <span className="text-sm">COMO SE CANDIDATAR *</span>
+              <input
+                type="text"
+                className="w-full focus:outline-none text-sm font-semibold p-2 bg-zinc-100 rounded-full"
+                placeholder="Tipo do trabalho"
+              />
+              <span className="text-xs opacity-50"></span>
+            </div>
+
+            <div className="flex flex-col gap-1">
               <span className="text-sm">TIPO DO TRABALHO *</span>
               <input
                 type="text"
@@ -102,11 +148,21 @@ export default function Home() {
                 relevante.
               </span>
             </div>
+
+            <div className="flex flex-col gap-1">
+              <span className="text-sm">E-MAIL DA EMPRESA *</span>
+              <input
+                type="text"
+                className="w-full focus:outline-none text-sm font-semibold p-2 bg-zinc-100 rounded-full"
+                placeholder="Tipo do trabalho"
+              />
+              <span className="text-xs opacity-50"></span>
+            </div>
           </div>
         </div>
 
         <div className="flex flex-col">
-          <span className="bg-white -mb-2 ml-2 z-50 w-fit px-2">
+          <span className="bg-white -mb-2 ml-2 z-30 w-fit px-2">
             Design do post
           </span>
           <div className="px-4 py-8 border border-zinc-200 rounded-md space-y-8">
@@ -114,6 +170,58 @@ export default function Home() {
               As compras das postagens não podem ser reembolsadas, a não ser que
               você desative sua conta 2 dias após a compra de um post.
             </span>
+
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <input type="checkbox" placeholder="Logo" />
+                <span className="text-sm font-semibold">
+                  Mostrar logo da empresa do lado do post (+R$45)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input type="checkbox" placeholder="Logo" />
+                <span className="text-sm font-semibold">
+                  Enviar e-mail para +1.000 usuários sobre minha postagem
+                  (+R$199)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input type="checkbox" placeholder="Logo" />
+                <span className="text-sm font-semibold">
+                  Criar um QR-Code com um short link para sua aplicação (+R$19)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input type="checkbox" placeholder="Logo" />
+                <span className="text-sm font-semibold">
+                  Destacar seu post em amarelo (+R$79)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input type="checkbox" placeholder="Logo" />
+                <span className="text-sm font-semibold">
+                  Destacar seu post por 24 horas (+R$99)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input type="checkbox" placeholder="Logo" />
+                <span className="text-sm font-semibold">
+                  Destacar seu post por 7 dias (+R$149)
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input type="checkbox" placeholder="Logo" />
+                <span className="text-sm font-semibold">
+                  Destacar seu post por 30 dias (+R$299)
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
