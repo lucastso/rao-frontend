@@ -2,7 +2,7 @@ import Navbar from '@/components/navbar'
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative mb-32">
       <div className="fixed bottom-0 left-0 w-full z-50 pt-4 bg-white">
         <div className="border border-zinc-200 rounded-t-md mx-auto max-w-xl h-20 p-4 bg-white flex items-center justify-between">
           <div className="flex flex-col">

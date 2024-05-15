@@ -18,10 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.className} text-zinc-900 max-w-xl mx-auto relative`}
+        className={`${outfit.className} text-zinc-900 max-w-xl mx-auto relative flex min-h-screen flex-col justify-between overflow-x-hidden`}
       >
         {children}
-        <Footer />
       </body>
     </html>
   )
