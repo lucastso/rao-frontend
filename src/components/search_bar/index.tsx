@@ -1,23 +1,55 @@
 'use client'
 
+import { searchBenefits } from '@/utils/search_benefits'
+import { searchTags } from '@/utils/search_tags'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 const SearchBar = () => {
-  const [opened, setOpened] = useState<boolean>(false)
-  const boxRef = useRef<HTMLDivElement>(null)
+  const [searchBoxOpened, setSearchBoxOpened] = useState<boolean>(false)
+  const [benefitsBoxOpened, setBenefitsBoxOpened] = useState<boolean>(false)
+  const searchBoxRef = useRef<HTMLDivElement>(null)
+  const benefitsBoxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (boxRef.current && !boxRef.current.contains(event.target as Node)) {
-        setOpened(false)
+    const handleClickOutsideSearch = (event: MouseEvent) => {
+      if (
+        searchBoxRef.current &&
+        !searchBoxRef.current.contains(event.target as Node)
+      ) {
+        setSearchBoxOpened(false)
+      }
+
+      if (
+        benefitsBoxRef.current &&
+        !benefitsBoxRef.current.contains(event.target as Node)
+      ) {
+        setBenefitsBoxOpened(false)
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
+    const handleClickOutsideBenefits = (event: MouseEvent) => {
+      if (
+        searchBoxRef.current &&
+        !searchBoxRef.current.contains(event.target as Node)
+      ) {
+        setSearchBoxOpened(false)
+      }
+
+      if (
+        benefitsBoxRef.current &&
+        !benefitsBoxRef.current.contains(event.target as Node)
+      ) {
+        setBenefitsBoxOpened(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideSearch)
+    document.addEventListener('mousedown', handleClickOutsideBenefits)
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('mousedown', handleClickOutsideSearch)
+      document.removeEventListener('mousedown', handleClickOutsideBenefits)
     }
   }, [])
 
@@ -44,58 +76,88 @@ const SearchBar = () => {
             </svg>
           </div>
           <input
-            onFocus={() => setOpened(true)}
+            onFocus={() => {
+              setSearchBoxOpened(true)
+              setBenefitsBoxOpened(false)
+            }}
             type="text"
             className="w-full focus:outline-none text-sm font-semibold p-2 bg-zinc-100"
             placeholder="Buscar"
           />
-          {opened && (
+          {searchBoxOpened && (
             <div
-              ref={boxRef}
-              className="w-full absolute top-full left-0 bg-white bg-opacity-95 backdrop-blur-sm border border-gray-200 shadow-lg z-50 rounded-md flex flex-col px-4 py-2 gap-4"
+              ref={searchBoxRef}
+              className="w-full absolute top-full left-0 bg-white bg-opacity-95 backdrop-blur-sm border border-gray-200 shadow-lg z-50 rounded-md flex flex-col py-2 max-h-[50vh] overflow-y-scroll overflow-x-hidden"
             >
-              <Link href="/" className="text-sm font-semibold">
-                Software Engineer
-              </Link>
-              <Link href="/" className="text-sm font-semibold">
-                Designer
-              </Link>
-              <Link href="/" className="text-sm font-semibold">
-                Designer
-              </Link>
-              <Link href="/" className="text-sm font-semibold">
-                Designer
-              </Link>
-              <Link href="/" className="text-sm font-semibold">
-                Designer
-              </Link>
-              <Link href="/" className="text-sm font-semibold">
-                Designer
-              </Link>
-              <Link href="/" className="text-sm font-semibold">
-                Designer
-              </Link>
+              {searchTags.map((tag) => {
+                return (
+                  <Link
+                    href={`/tag/${tag.slug}`}
+                    className="text-sm font-semibold py-2 px-4 hover:bg-zinc-100"
+                  >
+                    {tag.title}
+                  </Link>
+                )
+              })}
             </div>
           )}
         </div>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <select
-            name="tag"
-            id="tag"
-            className="focus:outline-none rounded-full border border-zinc-200 p-2 text-sm font-semibold"
-          >
-            <option value="" hidden>
-              Benefícios
-            </option>
-            <option value="" className="text-sm font-semibold py-2">
-              401k
-            </option>
-            <option value="" className="text-sm font-semibold py-2">
-              Plano de saúde
-            </option>
-          </select>
+          <div className="relative">
+            <div className="rounded-full border border-zinc-200 flex items-center overflow-hidden">
+              <input
+                onFocus={() => {
+                  setSearchBoxOpened(false)
+                  setBenefitsBoxOpened(true)
+                }}
+                type="text"
+                className="w-full focus:outline-none text-sm font-semibold py-2 px-4"
+                placeholder="Benefícios"
+              />
+              <div
+                className="w-10 h-10 flex items-center justify-center"
+                onClick={() => {
+                  setSearchBoxOpened(false)
+                  setBenefitsBoxOpened(true)
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M6 9l6 6l6 -6" />
+                </svg>
+              </div>
+              {benefitsBoxOpened && (
+                <div
+                  ref={benefitsBoxRef}
+                  className="w-full absolute top-full left-0 bg-white bg-opacity-95 backdrop-blur-sm border border-gray-200 shadow-lg z-50 rounded-md flex flex-col py-2"
+                >
+                  {searchBenefits.map((tag) => {
+                    return (
+                      <Link
+                        href={`/tag/${tag.slug}`}
+                        className="text-sm font-semibold py-2 px-4 hover:bg-zinc-100"
+                      >
+                        {tag.title}
+                      </Link>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <select
           name="tag"
@@ -106,10 +168,16 @@ const SearchBar = () => {
             Ordernar por
           </option>
           <option value="" className="text-sm font-semibold py-2">
-            401k
+            Maior salário
           </option>
           <option value="" className="text-sm font-semibold py-2">
-            Plano de saúde
+            Mais recente
+          </option>
+          <option value="" className="text-sm font-semibold py-2">
+            Mais visto
+          </option>
+          <option value="" className="text-sm font-semibold py-2">
+            Com mais benefícios
           </option>
         </select>
       </div>

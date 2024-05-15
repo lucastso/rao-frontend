@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="mb-32">
       <div className="flex flex-col items-center justify-center mb-16">
-        <div className="bg-profile h-40 w-full bg-cover bg-center gap-2">
+        <div className="bg-profile h-40 w-full bg-cover bg-center gap-2 rounded-b-sm">
           <Navbar theme="light" />
         </div>
         <div className="w-[95%] flex flex-col gap-2 -mt-4">

@@ -14,7 +14,7 @@ export default function Home() {
               <strong>R$ 180</strong>
             </div>
           </div>
-          <button className="bg-[#192BC2] px-4 py-2 text-white text-sm font-semibold rounded-md">
+          <button className="bg-zinc-900 px-4 py-2 text-white text-sm font-semibold rounded-md">
             Começar a contratar!
           </button>
         </div>
@@ -78,6 +78,19 @@ export default function Home() {
                 </span>{' '}
                 Nós só permitimos empregos reais, absolutamente nenhum outro
                 tipo, como cursos.
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <span className="text-sm">SALÁRIO *</span>
+              <input
+                type="number"
+                className="w-full focus:outline-none text-sm font-semibold p-2 bg-zinc-100 rounded-full"
+                placeholder="Salário"
+              />
+              <span className="text-xs opacity-50 bg-yellow-100">
+                Dados como "A combinar" ou que emitem a faixa salarial não serão
+                aprovados no processo de revisão.
               </span>
             </div>
 
@@ -221,6 +234,16 @@ export default function Home() {
                   Destacar seu post por 30 dias (+R$299)
                 </span>
               </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <span className="text-sm">LOGO DA EMPRESA *</span>
+              <input
+                type="file"
+                className="w-full focus:outline-none text-sm font-semibold p-2 bg-zinc-100 rounded-full"
+                placeholder="Tipo do trabalho"
+              />
+              <span className="text-xs opacity-50"></span>
             </div>
           </div>
         </div>
